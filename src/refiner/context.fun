@@ -87,8 +87,8 @@ struct
             let
               val prettyLbl =
                 case vis of
-                     Visibility.Visible => V.toString lbl
-                   | Visibility.Hidden => "[" ^ V.toString lbl ^ "]"
+                     Visibility.Visible => V.toString' lbl
+                   | Visibility.Hidden => "[" ^ V.toString' lbl ^ "]"
             in
               go (i + 1) (out tele') (r ^ "\n" ^ Int.toString i ^ ". " ^ prettyLbl ^ " : " ^ Syntax.toString a)
             end

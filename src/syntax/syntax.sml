@@ -136,7 +136,7 @@ struct
                in
                  if hasFree (B, x) then
                    Unparse.atom
-                     ("(" ^ Variable.toString x ^ ":" ^ toString A ^ ") " ^ toString B)
+                     ("(" ^ Variable.toString' x ^ ":" ^ toString A ^ ") " ^ toString B)
                  else
                    Unparse.infix' (Unparse.Right, 9, "->") (unparseAbt A, unparseAbt B)
                end
@@ -146,7 +146,7 @@ struct
                in
                  if hasFree (B, x) then
                    Unparse.atom
-                     ("{" ^ Variable.toString x ^ ":" ^ toString A ^ "} " ^ toString B)
+                     ("{" ^ Variable.toString' x ^ ":" ^ toString A ^ "} " ^ toString B)
                  else
                    Unparse.infix' (Unparse.Right, 9, "=>") (unparseAbt A, unparseAbt B)
                end
@@ -156,7 +156,7 @@ struct
                in
                  if hasFree (B, x) then
                    Unparse.atom
-                     ("(" ^ Variable.toString x ^ ":" ^ toString A ^ ") * " ^ toString B)
+                     ("(" ^ Variable.toString' x ^ ":" ^ toString A ^ ") * " ^ toString B)
                  else
                    Unparse.infix' (Unparse.Right, 10, "*") (unparseAbt A, unparseAbt B)
                end
@@ -165,14 +165,14 @@ struct
                  val (x, B) = unbind xB
                in
                  Unparse.atom
-                   ("{" ^ Variable.toString x ^ ":" ^ toString A ^ " | " ^ toString B ^ "}")
+                   ("{" ^ Variable.toString' x ^ ":" ^ toString A ^ " | " ^ toString B ^ "}")
                end
            | MAKE_CONTAINER $ #[A, xB] =>
                let
                  val (x, B) = unbind xB
                in
                  Unparse.atom
-                   (Variable.toString x ^ ":" ^ toString A ^ " <: " ^ toString B)
+                   (Variable.toString' x ^ ":" ^ toString A ^ " <: " ^ toString B)
                end
            | PLUS $ #[A,B] =>
                Unparse.infix' (Unparse.Right, 8, "+") (unparseAbt A, unparseAbt B)
